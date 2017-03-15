@@ -26,6 +26,34 @@ void MainWindow::updatePlayerUI(QImage image) {
     }
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event) {
+    pressedKeys += (Qt::Key)event->key();
+    this->handleKeyboardInput();
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *event) {
+    pressedKeys -= (Qt::Key)event->key();
+    this->handleKeyboardInput();
+}
+
+void MainWindow::getPressedKeyMask() {
+    /**
+      * 1000 => UP
+      * 0111 => DOWN
+      * 0010 => LEFT
+      * 0001 => RIGHT
+     **/
+
+
+}
+
+void MainWindow::handleKeyboardInput() {
+    if (pressedKeys.contains(Qt::Key_W) && pressedKeys.contains(Qt::Key_A)) {
+        qDebug() << "Pressed W and A" << endl;
+    } else if (pressedKeys.contains(Qt::Key_W)) {
+        qDebug() << "Pressed W" << endl;
+    }
+}
 
 void MainWindow::on_pushButton_clicked() {
     if(player->isStopped()) {
