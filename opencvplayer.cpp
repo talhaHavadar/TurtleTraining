@@ -53,7 +53,6 @@ void OpenCVPlayer::run() {
             stop = true;
             qDebug() << "Cannot read frame from video source!!" << endl;
         } else {
-            qDebug() << "Frame(channels:" << frame.channels() << ")" << endl;
             if(frame.channels() == 3) {
                 cvtColor(frame, RGBFrame, CV_BGR2RGB);
                 image = QImage((const unsigned char*)RGBFrame.data, RGBFrame.cols, RGBFrame.rows, QImage::Format_RGB888);
@@ -63,6 +62,10 @@ void OpenCVPlayer::run() {
             emit processedImage(image);
         }
     }
+}
+
+Mat OpenCVPlayer::Read() {
+    return frame;
 }
 
 void OpenCVPlayer::Stop() {

@@ -35,6 +35,7 @@ public:
     void Play();
     void Stop();
     bool isStopped();
+    Mat Read();
 };
 
 #endif // OPENCVPLAYER_H
